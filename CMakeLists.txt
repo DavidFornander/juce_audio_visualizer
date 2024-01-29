@@ -1,25 +1,28 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.28)
 
 project(MyJUCEProject)
 
-# Set the JUCE module path
+set(CMAKE_CXX_STANDARD 17)
+
 set(JUCE_MODULE_PATH /path/to/JUCE/modules)
 
-# Add the JUCE module path to the module search path
-list(APPEND CMAKE_MODULE_PATH ${JUCE_MODULE_PATH}/juce_cmake)
+set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs)
 
-# Find the JUCE library
-find_package(JUCE REQUIRED COMPONENTS juce_audio_basics juce_audio_devices juce_audio_formats juce_audio_processors juce_audio_utils)
+include(cmake/cpm.cmake)
 
-# Add your source files
-set(SOURCES
-  Source/Main.cpp
-  Source/MyAudioProcessor.cpp
-  Source/MyAudioProcessor.h
+CPMAddPackage(
+  NAME JUCE
+  GITHUB_REPOSITORY juce-framework/JUCE
+  GIT_TAG 7.0.9
+  VERSION 7.0.9
+  SOURCE_DIR ${LIB_DIR}/juce
 )
 
-# Create the executable
-add_executable(${PROJECT_NAME} ${SOURCES})
+if(MSVC)
+  add_compile_options(/Wall /WX)
+else()
+  add_compile_options(-Wall -Wextra -Wpedantic)
 
-# Link against the JUCE library
-target_link_libraries(${PROJECT_NAME} PRIVATE juce::juce_audio_basics juce::juce_audio_devices juce::juce_audio_formats juce::juce_audio_processors juce::juce_audio_utils)
+endif()
+
+add_subdirectory(plugin)
