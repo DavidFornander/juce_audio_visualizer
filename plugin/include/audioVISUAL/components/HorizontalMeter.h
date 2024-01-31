@@ -1,7 +1,5 @@
 #pragma once
 
-#include <JuceHeader.h>
-
 namespace Gui{
   class HorizontalMeter : public juce::Component
   {
@@ -15,7 +13,7 @@ namespace Gui{
       g.drawRect(getLocalBounds());
       g.fillRect(getLocalBounds().toFloat().withTrimmedTop(level));
 
-      jmap(level, -60.0f, +6.0f, 0.0f, static_cast<float>(getWidth()));
+      juce::jmap(level, -60.0f, +6.0f, 0.0f, static_cast<float>(getWidth()));
     }
     
     void setLevel(const float newLevel){
@@ -24,13 +22,5 @@ namespace Gui{
     }
     
   };
-  
-  HorizontalMeter::HorizontalMeter(/* args */)
-  {
-  }
-  
-  HorizontalMeter::~HorizontalMeter()
-  {
-  }
   
 }
