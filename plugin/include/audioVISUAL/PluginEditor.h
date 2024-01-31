@@ -7,6 +7,7 @@
 
 namespace audio_plugin {
   class AudioPluginAudioProcessorEditor : public juce::AudioProcessorEditor,
+                                          public juce::Timer,
                                           private juce::Slider::Listener{
   public:
     explicit AudioPluginAudioProcessorEditor(AudioPluginAudioProcessor &);
@@ -14,6 +15,7 @@ namespace audio_plugin {
 
     void paint(juce::Graphics &) override;
     void resized() override;
+    void timerCallback() override;
 
   private:
     void sliderValueChanged(juce::Slider *slider) override;

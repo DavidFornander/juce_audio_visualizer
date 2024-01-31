@@ -53,8 +53,17 @@ namespace audio_plugin {
     midiVolume.addListener(this);
     bypassSlider.addListener(this);
 
+    //Debug messages
     debug_msg_editor = "Editor";
-    processorRef.debug_msg_processor = "Processor";
+    processorRef.debug_msg_processor1 = "Debug 1";
+    processorRef.debug_msg_processor2 = "Debug 2";
+    processorRef.debug_msg_processor3 = "Debug 3";
+
+
+    processorRef.debug_msg_counter = 0;
+
+    startTimerHz(24);
+
   }
 
   /**
@@ -82,16 +91,32 @@ namespace audio_plugin {
 
     g.setColour(juce::Colours::white);
     g.setFont(15.0f);
-    g.drawFittedText((juce::String) debug_msg_editor, getLocalBounds(), juce::Justification::centredTop, 1);
-    g.drawFittedText("Midi Volume 3", getLocalBounds(), juce::Justification::centred, 1);
-    g.drawFittedText((juce::String) processorRef.debug_msg_processor, getLocalBounds(), juce::Justification::centredBottom, 1);
+    g.drawFittedText( processorRef.debug_msg_processor1, getLocalBounds(), juce::Justification::centredTop, 1);
+    g.drawFittedText( processorRef.debug_msg_processor2, getLocalBounds(), juce::Justification::centred, 1);
+    //g.drawFittedText("", getLocalBounds(), juce::Justification::centred, 1);
+    g.drawFittedText( processorRef.debug_msg_processor3, getLocalBounds(), juce::Justification::centredBottom, 1);
   }
 
   void AudioPluginAudioProcessorEditor::sliderValueChanged(juce::Slider *slider) {
     if (slider == &midiVolume) {
       processorRef.noteOnVel = midiVolume.getValue();
     }
+
+    if (slider == &bypassSlider) {
+      processorRef.bypass = bypassSlider.getValue();
+      repaint();
+    }
   }
+
+  void AudioPluginAudioProcessorEditor::timerCallback()
+{
+    //horizontalMeterL.setLevel(audioProcessor.getRmsValue(0));
+    //horizontalMeterR.setLevel(audioProcessor.getRmsValue(1));
+
+    //horizontalMeterL.repaint();
+    //horizontalMeterR.repaint();
+    repaint();
+}
 
   /**
    * @brief Called when the editor is resized.

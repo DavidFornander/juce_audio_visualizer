@@ -40,7 +40,12 @@ namespace audio_plugin {
     float bypass;
 
     // Debug messages
-    std::string debug_msg_processor;
+    std::string debug_msg_processor1;
+    std::string debug_msg_processor2;
+    std::string debug_msg_processor3;
+
+
+    int debug_msg_counter;
 
     // RMS Meter
     float rmsLevelLeft;

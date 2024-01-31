@@ -217,10 +217,15 @@ namespace audio_plugin {
       juce::ignoreUnused(channelData);
       // ..do something to the data...
     } */
+    
 
-    debug_msg_processor = std::to_string(bypass);
+    
+    // DEBUG
+    debug_msg_counter++;
+    debug_msg_processor1 = "noteOnVel: " + (std::to_string(noteOnVel));
+    debug_msg_processor2 = "Bypass: " + (std::to_string(bypass));
 
-    if((juce::uint8) bypass == 0.0f){
+    if((juce::uint8) bypass == 10.0f){
       buffer.clear();
  
       juce::MidiBuffer processedMidi;
