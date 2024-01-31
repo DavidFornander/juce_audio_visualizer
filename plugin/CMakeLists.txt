@@ -3,14 +3,15 @@ cmake_minimum_required(VERSION 3.22)
 project(audioVISUAL VERSION 0.0.1)
 
 juce_add_plugin(${PROJECT_NAME}
-  COMPANY_NAME "AudioVISUAL"
-  IS_SYNTH FALSE
-  NEEDS_MIDI_INPUT FALSE
-  NEEDS_MIDI_OUTPUT FALSE
+  #COMPANY_NAME "AudioVISUAL98979"
+  #IS_SYNTH FALSE
+  #NEEDS_MIDI_INPUT FALSE
+  #NEEDS_MIDI_OUTPUT FALSE
   PLUGIN_MANUFACTURER_CODE AVIS
-  PLUGIN_CODE AUPL
-  FORMATS VST3
-  PRODUCT_NAME "audioVISUAL"
+  PLUGIN_CODE A699
+  FORMATS AU VST3 Standalone
+  PRODUCT_NAME "AudioVISUAL0"
+  COPY_PLUGIN_AFTER_BUILD TRUE
 )
 
 target_sources(${PROJECT_NAME}
@@ -31,7 +32,6 @@ target_link_libraries(${PROJECT_NAME}
     juce::juce_recommended_config_flags
     juce::juce_recommended_lto_flags
     juce::juce_recommended_warning_flags
-    -Wl,-ld_classic  # Add linker flag here
 )
 
 target_compile_definitions(${PROJECT_NAME}
