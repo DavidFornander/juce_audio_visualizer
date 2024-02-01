@@ -10,10 +10,10 @@ namespace Gui{
       auto bounds = getLocalBounds().toFloat();
       g.setColour(juce::Colours::white.withBrightness(0.5f));
       g.fillRoundedRectangle(bounds, 5.0f);
-      g.drawRect(getLocalBounds());
-      g.fillRect(getLocalBounds().toFloat().withTrimmedTop(level));
 
-      juce::jmap(level, -60.0f, +6.0f, 0.0f, static_cast<float>(getWidth()));
+      const auto scaledX =  juce::jmap(level, -60.0f, +6.0f, 0.0f, static_cast<float>(getWidth()));
+      g.fillRoundedRectangle(bounds.removeFromLeft(scaledX), 5.0f);
+
     }
     
     void setLevel(const float newLevel){

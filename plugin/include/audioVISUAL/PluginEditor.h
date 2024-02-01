@@ -32,7 +32,7 @@ namespace audio_plugin {
     juce::String debug_msg_editor;
 
     // HorizontalMeter meter
-    // Gui::HorizontalMeter meter: horizontalMeterL, horizontalMeterR;
+    // HorizontalMeter meter: horizontalMeterL, horizontalMeterR;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AudioPluginAudioProcessorEditor)
   };
