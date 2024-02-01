@@ -1,4 +1,5 @@
 build/
 libs/
 .vscode/
+.ds_store
 ```
